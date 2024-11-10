@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            padding: 0.5rem 0;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            display: inline-block;
+        }
+        .content-section {
+            margin: 2rem 0;
+        }
+        .news-item {
+            background-color: #fff;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 10px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+            nav {
+                padding: 0.3rem 0;
+            }
+            nav a {
+                padding: 0.3rem 0.7rem;
+            }
+            .news-item {
+                padding: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>News Website</h1>
+        </div>
+    </header>
+    <nav>
+        <div class="container">
+            <a href="/">Home</a>
+            <a href="/search">Search</a>
+            <a href="/about">About</a>
+        </div>
+    </nav>
+    <main class="container">
+        <section class="content-section">
+            <h2>Latest News</h2>
+            <div class="news-item">
+                <h3>Sample News Title</h3>
+                <p>This is a sample news article. Real content would go here.</p>
+            </div>
+            <!-- More news items would go here -->
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 News Website. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

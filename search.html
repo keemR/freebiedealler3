@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results | News Website</title>
+    <meta name="description" content="Search results for deals, freebies, coupons, and sweepstakes on News Website.">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+        .search-form {
+            display: flex;
+            margin-top: 10px;
+            justify-content: center;
+        }
+        .search-form input[type="text"] {
+            flex-grow: 1;
+            max-width: 300px;
+            padding: 5px 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        .search-form button {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #444;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        nav {
+            background-color: #444;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        .search-results {
+            margin-top: 2rem;
+        }
+        .search-result {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+        .search-result h2 {
+            margin-bottom: 0.5rem;
+        }
+        .search-result p {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>News Website</h1>
+        <form action="search.html" method="get" class="search-form">
+            <input type="text" name="q" placeholder="Search deals, coupons, etc." aria-label="Search">
+            <button type="submit" aria-label="Submit search">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+    </nav>
+    <main class="search-results">
+        <h2>Search Results</h2>
+        <div id="results"></div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('q');
+            const resultsContainer = document.getElementById('results');
+
+            if (query) {
+                document.querySelector('input[name="q"]').value = query;
+                fetch(`/api/search?q=${encodeURIComponent(query)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.length > 0) {
+                            data.forEach(result => {
+                                const resultElement = document.createElement('div');
+                                resultElement.className = 'search-result';
+                                resultElement.innerHTML = `
+                                    <h2>${result.title}</h2>
+                                    <p>${result.description}</p>
+                                    <span class="category">${result.category}</span>
+                                `;
+                                resultsContainer.appendChild(resultElement);
+                            });
+                        } else {
+                            resultsContainer.innerHTML = '<p>No results found. Please try a different search term.</p>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        resultsContainer.innerHTML = '<p>An error occurred while fetching search results. Please try again later.</p>';
+                    });
+            } else {
+                resultsContainer.innerHTML = '<p>No search query provided. Please enter a search term.</p>';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deals, Freebies, and Coupons | News Website</title>
+    <meta name="description" content="Find the best deals, freebies, coupons, and sweepstakes. Save money and discover great opportunities with our curated selection of offers.">
+    <meta name="keywords" content="deals, freebies, coupons, sweepstakes, savings, discounts">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link rel="canonical" href="https://www.yourwebsite.com/index.html" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "News Website",
+      "url": "https://www.yourwebsite.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.yourwebsite.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0 0 15px 0;
+            font-size: 2rem;
+        }
+        .search-form {
+            display: flex;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+        .search-form input[type="text"] {
+            flex-grow: 1;
+            max-width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        .search-form button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #444;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        .nav {
+            background-color: #444;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        .nav a {
+            display: inline-block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            justify-content: space-around;
+        }
+        .news-item {
+            background-color: #fff;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex: 1 1 calc(33.333% - 20px);
+            min-width: 300px;
+            max-width: 400px;
+        }
+        .news-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .news-item h2 {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .news-item p {
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+        .section-title {
+            width: 100%;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .subcategories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .subcategory {
+            background-color: #fff;
+            margin: 5px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .subcategory:hover {
+            background-color: #ddd;
+        }
+        .content-section {
+            margin-bottom: 2rem;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            .search-form input[type="text"] {
+                max-width: none;
+            }
+            .news-item {
+                flex: 1 1 100%;
+            }
+            .subcategory {
+                flex: 1 1 calc(50% - 10px);
+            }
+        }
+        .subcategory-filter {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .subcategory-filter-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .clear-filter {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: #888;
+        }
+        .subcategory {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .subcategory.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            position: absolute;
+        }
+        .social-links {
+            margin-bottom: 10px;
+        }
+        .social-links a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            color: #ddd;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <header>
+        <div class="header">
+            <h1>News Website</h1>
+            <form action="search.html" method="get" class="search-form">
+                <input type="text" name="q" placeholder="Search deals, coupons, etc." aria-label="Search">
+                <button type="submit" aria-label="Submit search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="#freebies">Freebies</a>
+            <a href="#coupons">Coupons</a>
+            <a href="#deals">Deals</a>
+            <a href="#sweepstakes">Sweepstakes</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <main class="flex-grow">
+        <section class="content-section" id="freebies-section">
+            <div class="section-title">Freebies</div>
+            <div class="subcategory-filter-container">
+                <input type="text" class="subcategory-filter" placeholder="Filter freebies..." aria-label="Filter freebies">
+                <button class="clear-filter" aria-label="Clear filter">&times;</button>
+            </div>
+            <div class="subcategories" role="list">
+                <div class="subcategory">Free Coffee</div>
+                <div class="subcategory">Skincare Samples</div>
+                <div class="subcategory">Movie Tickets</div>
+                <div class="subcategory">Perfume Samples</div>
+                <div class="subcategory">Organic Snacks</div>
+            </div>
+            <div class="container" id="freebies-container">
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/300x200" alt="Free Coffee">
+                    <h2>Free Coffee at Local Cafe</h2>
+                    <p>Enjoy a free cup of coffee at your local cafe. Limited time offer!</p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/300x200" alt="Skincare Sample">
+                    <h2>Free Skincare Sample</h2>
+                    <p>Get a free sample of our new skincare product. While supplies last!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="coupons-section">
+            <div class="section-title">Coupons</div>
+            <div class="subcategory-filter-container">
+                <input type="text" class="subcategory-filter" placeholder="Filter coupons..." aria-label="Filter coupons">
+                <button class="clear-filter" aria-label="Clear filter">&times;</button>
+            </div>
+            <div class="subcategories" role="list">
+                <div class="subcategory">Restaurant Coupons</div>
+                <div class="subcategory">Clothing Store Coupons</div>
+                <div class="subcategory">Electronics Coupons</div>
+                <div class="subcategory">Home Decor Coupons</div>
+                <div class="subcategory">Grocery Coupons</div>
+            </div>
+            <div class="container" id="coupons-container">
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/300x200" alt="Restaurant Coupon">
+                    <h2>50% Off at Local Restaurant</h2>
+                    <p>Enjoy half-price meals at your favorite local restaurant this weekend!</p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/300x200" alt="Electronics Coupon">
+                    <h2>$100 Off New Smartphones</h2>
+                    <p>Get $100 off on the latest smartphone models. Limited time offer!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="deals-section">
+            <div class="section-title">Deals</div>
+            <div class="subcategory-filter-container">
+                <input type="text" class="subcategory-filter" placeholder="Filter deals..." aria-label="Filter deals">
+                <button class="clear-filter" aria-label="Clear filter">&times;</button>
+            </div>
+            <div class="subcategories" role="list">
+                <div class="subcategory">Electronics Deals</div>
+                <div class="subcategory">Fashion Deals</div>
+                <div class="subcategory">Travel Deals</div>
+                <div class="subcategory">Home & Garden Deals</div>
+                <div class="subcategory">Food & Drink Deals</div>
+            </div>
+            <div class="container" id="deals-container">
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/300x200" alt="Electronics Deal">
+                    <h2>50% Off Smart Home Devices</h2>
+                    <p>Upgrade your home with the latest smart devices at half the price!</p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/300x200" alt="Travel Deal">
+                    <h2>Last-Minute Flight Deals</h2>
+                    <p>Book your next adventure with our exclusive last-minute flight offers!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="sweepstakes-section">
+            <div class="section-title">Sweepstakes</div>
+            <div class="subcategory-filter-container">
+                <input type="text" class="subcategory-filter" placeholder="Filter sweepstakes..." aria-label="Filter sweepstakes">
+                <button class="clear-filter" aria-label="Clear filter">&times;</button>
+            </div>
+            <div class="subcategories" role="list">
+                <div class="subcategory">Cash Prizes</div>
+                <div class="subcategory">Vacation Packages</div>
+                <div class="subcategory">Tech Gadgets</div>
+                <div class="subcategory">Car Giveaways</div>
+                <div class="subcategory">Shopping Sprees</div>
+            </div>
+            <div class="container" id="sweepstakes-container">
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/300x200" alt="Cash Prize Sweepstakes">
+                    <h2>Win $10,000 Cash!</h2>
+                    <p>Enter our monthly sweepstakes for a chance to win $10,000 in cash!</p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/300x200" alt="Vacation Package Sweepstakes">
+                    <h2>Dream Vacation Giveaway</h2>
+                    <p>Win a luxury vacation package for two to a tropical paradise!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p>&copy; 2024 News Website. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterInputs = document.querySelectorAll('.subcategory-filter');
+            const clearButtons = document.querySelectorAll('.clear-filter');
+            
+            function filterSubcategories(input) {
+                const filter = input.value.toLowerCase();
+                const section = input.closest('.content-section');
+                const subcategories = section.querySelectorAll('.subcategory');
+                
+                subcategories.forEach(subcategory => {
+                    const text = subcategory.textContent.toLowerCase();
+                    if (text.includes(filter)) {
+                        subcategory.classList.remove('hidden');
+                    } else {
+                        subcategory.classList.add('hidden');
+                    }
+                });
+            }
+
+            function clearFilter(button) {
+                const container = button.closest('.subcategory-filter-container');
+                const input = container.querySelector('.subcategory-filter');
+                input.value = '';
+                const section = container.closest('.content-section');
+                const subcategories = section.querySelectorAll('.subcategory');
+                subcategories.forEach(subcategory => subcategory.classList.remove('hidden'));
+            }
+
+            filterInputs.forEach(input => {
+                input.addEventListener('input', () => filterSubcategories(input));
+            });
+
+            clearButtons.forEach(button => {
+                button.addEventListener('click', () => clearFilter(button));
+            });
+        });
+    </script>
+</body>
+</html>

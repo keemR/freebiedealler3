@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results | News Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .search-result {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .category {
+            font-style: italic;
+            color: #666;
+        }
+        .filter-form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            margin: 0 10px;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+            .filter-form select, .filter-form button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            .pagination a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>News Website</h1>
+    <main class="search-results">
+        <h2>Search Results</h2>
+        <form action="{{ url_for('search') }}" method="get" class="filter-form">
+            <input type="hidden" name="q" value="{{ query }}">
+            <label for="category">Filter by category:</label>
+            <select name="category" id="category">
+                <option value="">All Categories</option>
+                {% for cat in categories %}
+                <option value="{{ cat }}" {% if category == cat.lower() %}selected{% endif %}>{{ cat }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Apply Filter</button>
+        </form>
+        <div id="results">
+            {% if results %}
+                {% for result in results %}
+                <div class="search-result">
+                    <h3>{{ result.title }}</h3>
+                    <p>{{ result.description }}</p>
+                    <span class="category">{{ result.category }}</span>
+                </div>
+                {% endfor %}
+                <div class="pagination">
+                    {% if page > 1 %}
+                    <a href="{{ url_for('search', q=query, category=category, page=page-1) }}">Previous</a>
+                    {% endif %}
+                    <span>Page {{ page }} of {{ total_pages }}</span>
+                    {% if page < total_pages %}
+                    <a href="{{ url_for('search', q=query, category=category, page=page+1) }}">Next</a>
+                    {% endif %}
+                </div>
+            {% else %}
+                <p>No results found. Please try a different search term.</p>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>
